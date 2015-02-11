@@ -27,17 +27,27 @@ $connect =mysql_connect("localhost",$user1,$password);
 $sql = "SELECT MAX(AnswerID) AS HighestAnswerID FROM answers";
 $result = mysql_query($sql);
 
-$row = mysql_fetch_array($result)or mysql_error();;
+$row = mysql_fetch_array($result)or mysql_error();
 
 
 $high = $row["HighestAnswerID"];
 
-echo "$high";
+
+$sql3 = "SELECT MAX(AnswerID) AS HighestOrderID FROM answers WHERE QuestionID = '$qid'";
+
+$result3 = mysql_query($sql3);
+
+$row2 = mysql_fetch_array($result3)or mysql_error();
 
 
 
-$sql2 = "INSERT INTO answers (Title, Content, QuestionID,AnswerID,Best)
-VALUES ('$inputtitle', '$inputcontent', '$qid', '$serverid','0')";
+$highest = $row2["HighestOrderID"];
+
+$highest++;
+
+
+$sql2 = "INSERT INTO answers (Title, Content, QuestionID,AnswerID,Best,OrderID)
+VALUES ('$inputtitle', '$inputcontent', '$qid', '$serverid','0','$highest')";
 
 $result2 = mysql_query($sql2);
 

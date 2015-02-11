@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 11, 2015 at 04:24 PM
+-- Generation Time: Feb 11, 2015 at 06:55 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.5.19
 
@@ -33,18 +33,19 @@ CREATE TABLE IF NOT EXISTS `answers` (
   `Content` text NOT NULL,
   `QuestionID` int(11) NOT NULL,
   `AnswerID` int(11) NOT NULL,
-  `Best` int(11) NOT NULL
+  `Best` int(11) NOT NULL,
+  `OrderID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `answers`
 --
 
-INSERT INTO `answers` (`Title`, `Content`, `QuestionID`, `AnswerID`, `Best`) VALUES
-('First Response', 'It is Blue', 1, 2, 1),
-('Second Response', 'nope its red', 1, 2, 0),
-('Agreement', 'Indeed I concur	', 2, 1, 0),
-('$inputtitle', '$inputcontent', 0, 0, 0);
+INSERT INTO `answers` (`Title`, `Content`, `QuestionID`, `AnswerID`, `Best`, `OrderID`) VALUES
+('First Response', 'It is Blue', 1, 2, 1, 1),
+('Second Response ', 'Nope its red', 1, 2, 0, 2),
+('Agreement', 'Indeed I concur ', 2, 1, 0, 1),
+('Simple', 'The answer is 200', 8, 2, 0, 1);
 
 -- --------------------------------------------------------
 
