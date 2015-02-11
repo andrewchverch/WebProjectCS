@@ -20,8 +20,8 @@ $serverid = $_SESSION['serverid'];
 
 
 
-$sql = "UPDATE answers SET Best = 1 WHERE QuestionID = $qid && OrderID = $num";
-$sql = "UPDATE question SET Bested = 1 WHERE QuestionID = $qid";
+$sql = "UPDATE answers SET Best = 1 WHERE QuestionID = '$qid' && OrderID = '$num'";
+$sql = "UPDATE question SET Bested = 1 WHERE QuestionID = '$qid'";
 $result = mysql_query($sql);
 
 
