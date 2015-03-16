@@ -53,5 +53,5 @@ $result2 = mysql_query($sql2);
 
 
 
-header('Location: home.php');
+header('Location: index.php');
 ?>

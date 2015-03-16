@@ -2,7 +2,8 @@
 $qid = $_GET['id'];
 
 
-
+print( '<a href="index.php">Top 5 Questions</a>' );
+echo "<br/>";
 session_start();
 $serveruser = $_SESSION['serveruser'];
 
@@ -19,13 +20,14 @@ $connect =mysql_connect("localhost",$user1,$password);
 
 
 
+
 $sql = "SELECT * FROM `question` WHERE `QuestionID` = '$qid'";
 $result = mysql_query($sql);
 
 $row = mysql_fetch_array($result);
 
 
-
+$qscore = $row["Qscore"];
 
 $questiontitle = $row["Title"];
 $questioncontent = $row["Content"];
@@ -33,12 +35,13 @@ $askerid = $row["AskerID"];
 $best = $row["Bested"];
 
 
-echo "$questiontitle";
+echo "$questiontitle ";
+echo "Score:";
+echo "$qscore";
 echo "<br/>";
 echo "$questioncontent";
 echo "<br/>";
 echo "Asked by ";
-
 
 
 $sql2 = "SELECT * FROM `users` WHERE `UserID` = '$askerid'";
@@ -51,9 +54,30 @@ $askername = $row2["Username"];
 
 echo "$askername";
 
+$sql22 = "SELECT * FROM `images` WHERE `iuser` = '$askerid'";
+
+$result22 = mysql_query($sql22);
+$result22 = mysql_fetch_assoc($result22);
+if(empty($result22))
+	echo "(no avatar)";
+
+else
+{
+$result22 = $result22['image'];
+echo '<img src="data:image/jpeg;base64,' . base64_encode( $result22 ) . '" />';
+}
 
 
-$sql3 = "SELECT * FROM `answers` WHERE `QuestionID` = '$qid'";
+
+echo "<br/>";
+print( "<a href='qup.php?id=$qid'>UP VOTE</a>" );
+echo "<->";
+print( "<a href='qdown.php?id=$qid'>DOWN VOTE</a>" );
+echo "<br/>";
+
+
+
+$sql3 = "SELECT * FROM `answers` WHERE `QuestionID` = '$qid' ORDER BY `Ascore` DESC";
 
 $result3 = mysql_query($sql3);
 
@@ -64,16 +88,21 @@ echo "<br/>";
 
 
 
-$x = 1;
+
 while ($row3 = mysql_fetch_array($result3, MYSQL_ASSOC)) {
 $sname = $row3["Title"];
 
 
 
-
+$x = $row3["OrderID"];
 echo "Response $x: ";
-echo "$sname ";
+echo "$sname                       ";
+
+$score = $row3["Ascore"];
+echo "Score: ";
+echo "$score";
 echo "<br/>";
+
 $name = $row3["Content"];
 echo "$name";
 
@@ -88,7 +117,25 @@ $row4 = mysql_fetch_array($result4);
 $personname = $row4["Username"];
 echo "<br/>";
 echo "Answer given by $personname";
-$x++;
+
+$sql23 = "SELECT * FROM `images` WHERE `iuser` = '$person'";
+
+$result23 = mysql_query($sql23);
+$result23 = mysql_fetch_assoc($result23);
+if(empty($result23))
+	echo "(no avatar)";
+
+else
+{
+$result23 = $result23['image'];
+echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
+}
+
+echo "<br/>";
+print( "<a href='aup.php?id=$x'>UP VOTE</a>" );
+echo "<->";
+print( "<a href='adown.php?id=$x'>DOWN VOTE</a>" );
+echo "<br/>";
 
 echo "<br/>";
 

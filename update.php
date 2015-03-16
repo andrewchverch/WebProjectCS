@@ -21,8 +21,9 @@ $serverid = $_SESSION['serverid'];
 
 
 $sql = "UPDATE answers SET Best = 1 WHERE QuestionID = '$qid' && OrderID = '$num'";
-$sql = "UPDATE question SET Bested = 1 WHERE QuestionID = '$qid'";
 $result = mysql_query($sql);
+$sql2 = "UPDATE question SET Bested = 1 WHERE QuestionID = '$qid'";
+$result2 = mysql_query($sql2);
 
 
 

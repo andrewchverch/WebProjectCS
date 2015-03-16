@@ -1,9 +1,6 @@
 
 
 
-
-
-
 <html>
 
 <head>
@@ -20,7 +17,7 @@
         <br>
     
       <br>
-       Top 5 Questions
+       Questions
        <br>
     </div>
 </form>
@@ -55,7 +52,7 @@ $connect =mysql_connect("localhost",$user1,$password);
 
 
 
-$sql = "SELECT * FROM `question` ORDER BY `Qscore` DESC LIMIT 5";
+$sql = "SELECT * FROM `question` ORDER BY `Qscore` DESC";
 $result = mysql_query($sql);
 
 //"Question: %s", $row["Title"]
@@ -66,9 +63,9 @@ $askerid = $row["AskerID"];
 
 
 
-if($best==1)
+if($serverid==$askerid && $best==1)
 {
-  echo"<a href='questionsol.php?id=$link'>".$link."</a>.";
+  echo"<a href='questionsol.php?id=$link?win=$best'>".$link."</a>.";
     $title = $row["Title"];
     $score = $row["Qscore"];
     echo"$title ";
@@ -79,7 +76,7 @@ if($best==1)
 
 else if($serverid==$askerid && $best!=1)
 {
-  echo"<a href='question.php?id=$link'>".$link."</a>.";
+  echo"<a href='question.php?id=$link?win=$best'>".$link."</a>.";
     $title = $row["Title"];
        $score = $row["Qscore"];
     echo"$title ";
@@ -90,7 +87,7 @@ else if($serverid==$askerid && $best!=1)
 
 
     else
-      {echo"<a href='questionans.php?id=$link'>".$link."</a>.";
+      {echo"<a href='questionans.php?id=$link?win=$best'>".$link."</a>.";
     $title = $row["Title"];
         $score = $row["Qscore"];
     echo"$title ";
@@ -104,7 +101,7 @@ mysql_free_result($result);
 mysql_close();
 
 
-print( '<a href="Archive.php">Other Questions</a>' );
+print( '<a href="index.php">Top 5 Questions</a>' );
 echo "<br/>";
 print( '<a href="profile.php">PROFILE</a>' );
 echo "<br/>";
