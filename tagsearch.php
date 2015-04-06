@@ -1,6 +1,7 @@
 
 
 
+
 <html>
 
 <head>
@@ -12,7 +13,7 @@
 </head>
 <body>
   
-      <h1>Welcome to the Site where the Toughest Questions are Answered</h1>
+      <h1>Tag search</h1>
 
         <br>
     
@@ -35,6 +36,10 @@
 
 
 <?php
+
+
+$tag = $_GET['id'];
+
 session_start();
 $serveruser = $_SESSION['serveruser'];
 
@@ -51,12 +56,19 @@ $connect =mysql_connect("localhost",$user1,$password);
 
 
 
+$sql2 = "SELECT * FROM `tags` WHERE `Tag` = '$tag'";
+$result2 = mysql_query($sql2);
 
-$sql = "SELECT * FROM `question` ORDER BY `Qscore` DESC";
+while ($row2 = mysql_fetch_array($result2, MYSQL_ASSOC))
+{
+
+     $question = $row2["QuestionNum"];
+$sql = "SELECT * FROM `question` WHERE `QuestionID` = '$question'";
 $result = mysql_query($sql);
 
-//"Question: %s", $row["Title"]
-while ($row = mysql_fetch_array($result, MYSQL_ASSOC)) {
+
+
+$row = mysql_fetch_array($result, MYSQL_ASSOC);
      $best = $row["Bested"];
   $link = $row["QuestionID"];
 $askerid = $row["AskerID"];
@@ -117,7 +129,7 @@ else if($serverid==$askerid && $best!=1)
 
 }
 
-mysql_free_result($result);
+//mysql_free_result($result);
 mysql_close();
 
 

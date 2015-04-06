@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 16, 2015 at 12:11 PM
+-- Generation Time: Apr 06, 2015 at 07:14 AM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -84,24 +84,59 @@ CREATE TABLE IF NOT EXISTS `question` (
   `Content` text NOT NULL,
   `AskerID` int(11) NOT NULL,
   `Bested` int(11) NOT NULL,
-  `Qscore` int(11) NOT NULL
+  `Qscore` int(11) NOT NULL,
+  `frozen` int(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `question`
 --
 
-INSERT INTO `question` (`QuestionID`, `Title`, `Content`, `AskerID`, `Bested`, `Qscore`) VALUES
-(1, 'First Question', 'What is the color of the sky?', 1, 1, 5),
-(2, 'question 2', 'lol this', 2, 1, 5),
-(3, 'CS versus CE', 'Is Cs easier than CE', 3, 0, 2),
-(4, 'Pants in the snow', 'How many layers of jeans work in the winter?', 4, 0, 1),
-(5, 'Cooking tips', 'What spices should be added to chicken?', 5, 0, 1),
-(6, 'Advice on movies', 'Is batman worth seeing in Imax', 2, 0, 1),
-(7, 'printer trouble', 'What do you do when your printer runs out of ink?', 2, 0, -1),
-(8, 'Math troubles', 'Ten times twenty?', 1, 0, -1),
-(9, 'Songs', 'What is the difference between metal and rock?', 3, 0, 0),
-(10, 'Round corner', 'I stubbed my toe on the edge of a table any safe way yo fix the danger?', 2, 0, 1);
+INSERT INTO `question` (`QuestionID`, `Title`, `Content`, `AskerID`, `Bested`, `Qscore`, `frozen`) VALUES
+(1, 'First Question', 'What is the color of the sky?', 1, 1, 5, 0),
+(2, 'question 2', 'lol this', 2, 1, 5, 0),
+(3, 'CS versus CE', 'Is Cs easier than CE', 3, 0, 2, 0),
+(4, 'Pants in the snow', 'How many layers of jeans work in the winter?', 4, 0, 1, 0),
+(5, 'Cooking tips', 'What spices should be added to chicken?', 5, 0, 1, 0),
+(6, 'Advice on movies', 'Is batman worth seeing in Imax', 2, 0, 1, 0),
+(7, 'printer trouble', 'What do you do when your printer runs out of ink?', 2, 0, -1, 0),
+(8, 'Math troubles', 'Ten times twenty?', 1, 0, -1, 0),
+(10, 'Round corner', 'I stubbed my toe on the edge of a table any safe way yo fix the danger?', 2, 0, 1, 0),
+(11, 'FREEZER BURN', 'this is the best question', 7, 0, 0, 0),
+(12, 'tag test\r\n', 'lol tags\r\n', 1, 0, 0, 0),
+(13, 'test2\r\n', 'test3\r\n', 1, 0, 0, 0),
+(14, 'test3\r\n', 'lol\r\n', 1, 0, 0, 0),
+(15, 'big test\r\n', 'best question', 1, 0, 0, 0),
+(16, 'Lol question\r\n', 'funny \r\n', 1, 0, 0, 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tags`
+--
+
+CREATE TABLE IF NOT EXISTS `tags` (
+  `Tag` text NOT NULL,
+  `QuestionNum` int(100) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tags`
+--
+
+INSERT INTO `tags` (`Tag`, `QuestionNum`) VALUES
+('funny', 15),
+('long', 15),
+('test\r\n', 15),
+('funny', 1),
+('funny', 3),
+('long', 2),
+('easy', 2),
+('easy', 4),
+('unique', 1),
+('nature', 1),
+('new', 16),
+('field\r\n', 16);
 
 -- --------------------------------------------------------
 
@@ -112,20 +147,22 @@ INSERT INTO `question` (`QuestionID`, `Title`, `Content`, `AskerID`, `Bested`, `
 CREATE TABLE IF NOT EXISTS `users` (
   `UserID` int(11) NOT NULL,
   `Username` varchar(20) NOT NULL,
-  `Password` varchar(20) NOT NULL
+  `Password` varchar(20) NOT NULL,
+  `UsScore` int(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`UserID`, `Username`, `Password`) VALUES
-(1, 'pallen', 'm$ftw'),
-(2, 'tblee', '0mGth3WeB!'),
-(3, 'bourne', 'bash_$'),
-(4, 'edsger', 'st1ll1l11lG0O2'),
-(5, 'wgates', '5il3M4X_m$4L'),
-(6, 'ace', 'lance');
+INSERT INTO `users` (`UserID`, `Username`, `Password`, `UsScore`) VALUES
+(1, 'pallen', 'm$ftw', 4),
+(2, 'tblee', '0mGth3WeB!', 6),
+(3, 'bourne', 'bash_$', 2),
+(4, 'edsger', 'st1ll1l11lG0O2', 1),
+(5, 'wgates', '5il3M4X_m$4L', 1),
+(6, 'ace', 'lance', 0),
+(7, 'ADMINISTRATOR', 'ADMINISTRATOR', 0);
 
 -- --------------------------------------------------------
 

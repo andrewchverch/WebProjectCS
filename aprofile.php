@@ -1,13 +1,17 @@
 <?php
 session_start();
+
+
+print( '<a href="index.php">Main Menu</a>' );
+echo "<br/>";
+
 $serveruser = $_SESSION['serveruser'];
 
 $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
-print( '<a href="index.php">Top 5 Questions</a>' );
-echo "<br/>";
 
+$inputuser = $_POST['user'];
 
 $user = 'user';
 $user1 = 'admin';
@@ -15,7 +19,7 @@ $password = '5pR1nG2OlS';
 $connect =mysql_connect("localhost",$user1,$password);
 @mysql_select_db($user) or die ("Database not found");
 
-$sql = "SELECT * FROM `users` WHERE `UserID` = '$serverid'";
+$sql = "SELECT * FROM `users` WHERE `Username` = '$inputuser'";
 $result = mysql_query($sql);
 
 $row = mysql_fetch_array($result);
@@ -33,18 +37,32 @@ echo "<br/>";
 
 
 echo "Avatar:";
-$sql23 = "SELECT * FROM `images` WHERE `iuser` = '$serverid'";
+$sql23 = "SELECT * FROM `images` WHERE `iuser` = '$id'";
 
 $result23 = mysql_query($sql23);
 $result23 = mysql_fetch_assoc($result23);
 if(empty($result23))
-	print( '<a href="newimage.php">insert avatar</a>' );
+  {}
 
 else
 {
 $result23 = $result23['image'];
 echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
 }
+
+$sql50 = "SELECT count(QuestionID) FROM `question` WHERE `AskerID` = '$id'";
+$result50 = mysql_query($sql50);
+$row7 = mysql_fetch_array($result50, MYSQL_ASSOC);
+$lol = $row7["count(QuestionID)"];
+
+
+echo "<br/>";
+echo "<br/>";
+echo "Number of Questions by User: $lol";
+echo "<br/>";
+
+
+
 
 
 
@@ -55,7 +73,7 @@ echo "<br/>";
 
 
 
-$sql = "SELECT * FROM `question` WHERE `AskerID` = '$serverid'";
+$sql = "SELECT * FROM `question` WHERE `AskerID` = '$id'";
 $result = mysql_query($sql);
 
 
@@ -65,8 +83,13 @@ while ($row2 = mysql_fetch_array($result, MYSQL_ASSOC)) {
 $askerid = $row2["AskerID"];
 
 
+$freeze =$row2["frozen"];
 
-if($serverid==$askerid && $best==1)
+
+if($freeze==0)
+{
+
+if($inputuser==$askerid && $best==1)
 {
   echo"<a href='questionsol.php?id=$link?win=$best'>".$link."</a>.";
     $title = $row2["Title"];
@@ -74,10 +97,12 @@ if($serverid==$askerid && $best==1)
     echo"$title ";
     echo "Score:";
      echo "$score";
-    echo "<br/>";
+ echo "  ";
+    echo"<a href='delete.php?id=$link?win=$best'>DELETE</a>.";
+  echo "<br/>";
 }
 
-else if($serverid==$askerid && $best!=1)
+else if($inputuser==$askerid && $best!=1)
 {
   echo"<a href='question.php?id=$link?win=$best'>".$link."</a>.";
     $title = $row2["Title"];
@@ -85,9 +110,23 @@ else if($serverid==$askerid && $best!=1)
     echo"$title ";
     echo "Score:";
      echo "$score";
-    echo "<br/>";
+    echo "  ";
+    echo"<a href='delete.php?id=$link?win=$best'>DELETE</a>.";
+  echo "<br/>";
 }
-
+}
+if($freeze==1)
+{
+  echo"<a href='questionfrozen.php?id=$link'>".$link."</a>.";
+    $title = $row["Title"];
+    $score = $row["Qscore"];
+    echo"$title ";
+    echo "Score:";
+     echo "$score";
+    echo "  ";
+     echo"<a href='delete.php?id=$link?win=$best'>DELETE</a>.";
+echo "<br/>";
+}
 
     else
       {echo"<a href='questionans.php?id=$link?win=$best'>".$link."</a>.";
@@ -96,7 +135,9 @@ else if($serverid==$askerid && $best!=1)
     echo"$title ";
     echo "Score:";
      echo "$score";
-    echo "<br/>";
+    echo "  ";
+     echo"<a href='delete.php?id=$link?win=$best'>DELETE</a>.";
+     echo "<br/>";
   }
 }
 

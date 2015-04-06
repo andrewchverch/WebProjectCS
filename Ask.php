@@ -4,6 +4,12 @@
 $inputtitle = $_POST['Title'];
 $inputcontent = $_POST['Content'];
 
+$inputtags = $_POST['Tags'];
+
+
+
+$array = explode(" ",$inputtags);
+
 
 echo "$inputtitle";
 echo "$inputcontent";
@@ -16,6 +22,14 @@ $serverpass = $_SESSION['serverpass'];
 $serverid = $_SESSION['serverid'];
 
 $qid = $_SESSION['$qid'];
+
+
+
+
+
+
+
+
 
 
 $user = 'user';
@@ -36,11 +50,30 @@ echo "$high";
 
 $high++;
 
+
 $sql2 = "INSERT INTO question (QuestionID,Title, Content,AskerID,Bested)
 VALUES ('$high','$inputtitle', '$inputcontent' , '$serverid','0')";
 
 
 $result2 = mysql_query($sql2);
+
+
+
+
+
+foreach ($array as &$value) {
+
+$sql3= "INSERT INTO tags (Tag, QuestionNum) VALUES ('$value', '$high' )";
+$result3= mysql_query($sql3);
+
+
+  
+}
+
+
+
+
+
 
 
 

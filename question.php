@@ -42,6 +42,22 @@ echo "$qscore";
 echo "<br/>";
 echo "$questioncontent";
 echo "<br/>";
+echo "TAGS: ";
+
+
+$sql20 = "SELECT * FROM `tags` WHERE `QuestionNum` = '$qid'";
+$result20 = mysql_query($sql20);
+
+
+while ($row20 = mysql_fetch_array($result20, MYSQL_ASSOC)) {
+$tag = $row20["Tag"];
+
+ echo"<a href='tagsearch.php?id=$tag'>".$tag."</a>.";
+
+
+}
+
+echo "<br/>";
 echo "Asked by ";
 
 
@@ -53,10 +69,12 @@ $result2 = mysql_query($sql2);
 $row2 = mysql_fetch_array($result2);
 
 $askername = $row2["Username"];
-
+$uscore = $row2["UsScore"];
 echo "$askername";
-
-
+echo "<br/>";
+echo "User Score: ";
+echo "$uscore";
+echo "<br/>";
 
 $sql22 = "SELECT * FROM `images` WHERE `iuser` = '$askerid'";
 
@@ -118,8 +136,11 @@ $result4 = mysql_query($sql4);
 $row4 = mysql_fetch_array($result4);
 
 $personname = $row4["Username"];
+$xscore = $row4["UsScore"];
 echo "<br/>";
 echo "Answer given by $personname";
+echo "<br/>";
+echo "Asker Score: $xscore";
 $x++;
 
 
@@ -147,6 +168,17 @@ echo "<br/>";
 }
 echo "<br/>";
 
+echo "<br/>";
+if($serveruser=='ADMINISTRATOR')
+{
+
+print( "<a href='freeze.php?id=$qid'>FREEZE</a>" );
+echo "<br/>";
+
+
+
+
+}
 
 mysql_close();
 ?>

@@ -55,12 +55,32 @@ $result4 = mysql_fetch_assoc($result4);
 
 
 $num = $result4["Qscore"];
+$person =$result4["AskerID"];
 
 $num++;
 
-$sql = "UPDATE question SET `Qscore` = '$num' WHERE QuestionID = '$qid'";
+
+
+$sql5 = "SELECT * FROM `users` WHERE `UserID` = '$person'";
+$result5 = mysql_query($sql5);
+$result5 = mysql_fetch_assoc($result5);
+
+
+$bigscore = $result5["UsScore"];
+
+$bigscore++;
+
+
+
+
+$sql = "UPDATE question SET `Qscore` = '$num' WHERE `QuestionID` = '$qid'";
 $result = mysql_query($sql);
 
+
+
+
+$sql10 = "UPDATE users SET `UsScore` = '$bigscore' WHERE `UserID` = '$person'";
+$result10 = mysql_query($sql10);
 header('Loaction: index.php');
 
 }

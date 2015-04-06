@@ -55,13 +55,8 @@ $tag = $row20["Tag"];
 
 
 }
-
-
 echo "<br/>";
 echo "Asked by ";
-
-
-
 
 
 $sql2 = "SELECT * FROM `users` WHERE `UserID` = '$askerid'";
@@ -69,6 +64,7 @@ $sql2 = "SELECT * FROM `users` WHERE `UserID` = '$askerid'";
 $result2 = mysql_query($sql2);
 
 $row2 = mysql_fetch_array($result2);
+
 $askername = $row2["Username"];
 $uscore = $row2["UsScore"];
 echo "$askername";
@@ -76,7 +72,6 @@ echo "<br/>";
 echo "User Score: ";
 echo "$uscore";
 echo "<br/>";
-
 $sql22 = "SELECT * FROM `images` WHERE `iuser` = '$askerid'";
 
 $result22 = mysql_query($sql22);
@@ -91,12 +86,6 @@ echo '<img src="data:image/jpeg;base64,' . base64_encode( $result22 ) . '" />';
 }
 
 
-
-echo "<br/>";
-print( "<a href='qup.php?id=$qid'>UP VOTE</a>" );
-echo "<->";
-print( "<a href='qdown.php?id=$qid'>DOWN VOTE</a>" );
-echo "<br/>";
 
 
 
@@ -137,13 +126,12 @@ $result4 = mysql_query($sql4);
 
 $row4 = mysql_fetch_array($result4);
 
-
 $personname = $row4["Username"];
 $xscore = $row4["UsScore"];
 echo "<br/>";
 echo "Answer given by $personname";
 echo "<br/>";
-echo "Asker Score: $xscore";echo "Answer given by $personname";
+echo "Asker Score: $xscore";
 
 $sql23 = "SELECT * FROM `images` WHERE `iuser` = '$person'";
 
@@ -172,13 +160,14 @@ echo "<br/>";
 echo "______________________________________________________________________";
 echo "______________________________________________________________________";
 
-echo "<br/>";
 
+echo "<br/>";
 if($serveruser=='ADMINISTRATOR')
 {
 
-print( "<a href='freeze.php?id=$qid'>FREEZE</a>" );
+print( "<a href='unfreeze.php?id=$qid'>UNFREEZE</a>" );
 echo "<br/>";
+
 
 
 
@@ -192,42 +181,3 @@ echo "<br/>";
 mysql_close();
 ?>
 
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
- 
-  <link rel="stylesheet" href="css/style.css">
- 
-</head>
-<body>
-
-<br>
-  Submit Your Own Answer
-
-<br>
-   <form action="answer.php" method="post" >
-
-
-   <textarea rows="1" cols="30" name="Title">
-Type answer title here
-</textarea> 
-
-<br>
- <textarea rows="4" cols="30" name="Content">
-Type answer here
-</textarea> 
-
-
-<br>
- 
-        <input type="submit" value="Submit">
-
-    </div>
-</form>
-  </section>
-
-  
-</body>
-</html>
