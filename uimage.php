@@ -4,7 +4,7 @@
 </head>
 <body>
 
-<form action="newimage.php" method="POST" enctype="multipart/form-data">
+<form action="uimage.php" method="POST" enctype="multipart/form-data">
 	File:
 	<input type="file" name="image"> <input type="submit" value="Upload">
 </body>
@@ -50,8 +50,10 @@ if($image_size==FALSE)
 
 else
 {
+$delete ="DELETE FROM `images` WHERE `iuser` = '$serverid'";
 
 
+$result44 = mysql_query($delete);
 
 
 $insert = "INSERT INTO images (iuser,iname, image)

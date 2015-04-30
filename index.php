@@ -45,7 +45,7 @@ $serveruser = $_SESSION['serveruser'];
 $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
-
+$serverval = $_SESSION['serverval'];
 
 $user = 'user';
 $user1 = 'admin';

@@ -44,8 +44,9 @@ else
 {
 $result23 = $result23['image'];
 echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
+echo "<br/>";
+print( '<a href="uimage.php">insert avatar</a>' );
 }
-
 
 
 echo "<br/>";

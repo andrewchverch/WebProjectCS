@@ -27,6 +27,7 @@ $rowpass = mysql_query($resultpass);
 $serveruser = $row["Username"];
 $serverpass = $row["Password"];
 $serverid = $row["UserID"];
+$serverval = $row["Validated"];
 
 
 if($serveruser&&$serverpass){
@@ -45,6 +46,7 @@ session_start();
 $_SESSION['serveruser'] = $serveruser;
 $_SESSION['serverpass'] = $serverpass;
 $_SESSION['serverid'] = $serverid;
+$_SESSION['serverval'] = $serverval;
 	header('Location: index.php');
 }else{
 	header('Loaction: fail.php');

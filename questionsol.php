@@ -11,7 +11,10 @@ $serveruser = $_SESSION['serveruser'];
 $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
+$serverval = $_SESSION['serverval'];
 $_SESSION['qid']= $qid;
+
+
 
 $user = 'user';
 $user1 = 'admin';
@@ -88,12 +91,15 @@ else
 $result22 = $result22['image'];
 echo '<img src="data:image/jpeg;base64,' . base64_encode( $result22 ) . '" />';
 }
+
+if($serverval==1)
+{
 echo "<br/>";
 print( "<a href='qup.php?id=$thing'>UP VOTE</a>" );
 echo "<->";
 print( "<a href='qdown.php?id=$thing'>DOWN VOTE</a>" );
 echo "<br/>";
-
+}
 
 
 
@@ -164,12 +170,14 @@ $result23 = $result23['image'];
 echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
 }
 
+if($serverval==1)
+{
 echo "<br/>";
 print( "<a href='aup.php?id=$x'>UP VOTE</a>" );
 echo "<->";
 print( "<a href='adown.php?id=$x'>DOWN VOTE</a>" );
 echo "<br/>";
-
+}
 
 echo "<br/>";
 
@@ -244,12 +252,14 @@ $result23 = $result23['image'];
 echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
 }
 
+if($serverval==1)
+{
 echo "<br/>";
 print( "<a href='aup.php?id=$x'>UP VOTE</a>" );
 echo "<->";
 print( "<a href='adown.php?id=$x'>DOWN VOTE</a>" );
 echo "<br/>";
-
+}
 
 
 echo "<br/>";
