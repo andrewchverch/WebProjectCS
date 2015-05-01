@@ -1,14 +1,4 @@
-<html>
-<head>
-		<title>Upload an image</title>
-</head>
-<body>
 
-<form action="uimage.php" method="POST" enctype="multipart/form-data">
-	File:
-	<input type="file" name="image"> <input type="submit" value="Upload">
-</body>
-</html>
 
 <?php
 
@@ -18,7 +8,8 @@ $serveruser = $_SESSION['serveruser'];
 $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
-
+$serverval = $_SESSION['serverval'];
+$email = $_SESSION['email'];
 
 $user = 'user';
 $user1 = 'admin';
@@ -29,48 +20,40 @@ $connect =mysql_connect("localhost",$user1,$password);
 
 
 
-$file = $_FILES['image']['tmp_name'];
+$hash = md5(strtolower(trim($email)));
+
+
+$newfile = "http://www.gravatar.com/avatar/" . $hash . ".jpeg";
+
+$image = addslashes(file_get_contents($newfile));
 
 
 
-if(!isset($file))
-echo "Please select an image.";
-
-
-else
-{
-
-$image = addslashes(file_get_contents($_FILES['image']['tmp_name']));
-$image_name = addslashes($_FILES['image']['name']);
-$image_size = getimagesize($_FILES['image']['tmp_name']);
-
-
-if($image_size==FALSE)
-	echo "that's not an image.";
-
-else
-{
 $delete ="DELETE FROM `images` WHERE `iuser` = '$serverid'";
 
 
 $result44 = mysql_query($delete);
 
+$image_name = 'gravatar.jpeg';
 
-$insert = "INSERT INTO images (iuser,iname, image)
+
+$insert = "INSERT INTO images (iuser,iname,image)
 VALUES ( '$serverid','$image_name','$image')";
 
 $result = mysql_query($insert);
 echo "did it";
 header('Loaction: profile.php');
-}
 
 
-}
 
 echo "<br/>";
 
 
 print( '<a href="profile.php">check out your new picture</a>' );
+
+
+
+
 
 
 

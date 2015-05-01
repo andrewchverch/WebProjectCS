@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2015 at 01:49 AM
+-- Generation Time: May 01, 2015 at 09:40 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -96,7 +96,7 @@ INSERT INTO `question` (`QuestionID`, `Title`, `Content`, `AskerID`, `Bested`, `
 (1, 'First Question', 'What is the color of the sky?', 1, 1, 5, 0),
 (2, 'question 2', 'lol this', 2, 1, 5, 0),
 (3, 'CS versus CE', 'Is Cs easier than CE', 3, 0, 2, 0),
-(4, 'Pants in the snow', 'How many layers of jeans work in the winter?', 4, 0, 1, 0),
+(4, 'Pants in the snow', 'How many layers of jeans work in the winter?', 4, 0, 0, 0),
 (5, 'Cooking tips', 'What spices should be added to chicken?', 5, 0, 1, 0),
 (6, 'Advice on movies', 'Is batman worth seeing in Imax', 2, 0, 1, 0),
 (7, 'printer trouble', 'What do you do when your printer runs out of ink?', 2, 0, -1, 0),
@@ -158,10 +158,10 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `UsScore`, `Validated`, `email`) VALUES
-(1, 'pallen', 'm$ftw', 4, 1, ''),
+(1, 'pallen', 'm$ftw', 4, 1, 'achve001@odu.edu'),
 (2, 'tblee', '0mGth3WeB!', 6, 0, ''),
 (3, 'bourne', 'bash_$', 2, 0, ''),
-(4, 'edsger', 'st1ll1l11lG0O2', 1, 0, ''),
+(4, 'edsger', 'st1ll1l11lG0O2', 0, 0, ''),
 (5, 'wgates', '5il3M4X_m$4L', 1, 0, ''),
 (6, 'ace', 'lance', 0, 0, ''),
 (7, 'ADMINISTRATOR', 'ADMINISTRATOR', 0, 0, ''),
@@ -200,7 +200,8 @@ INSERT INTO `votes` (`Uvote`, `Vtype`, `QID`, `AID`) VALUES
 (3, 2, 7, 0),
 (3, 2, 8, 0),
 (3, 1, 1, 2),
-(3, 1, 1, 2);
+(3, 1, 1, 2),
+(1, 2, 4, 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

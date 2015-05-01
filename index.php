@@ -46,6 +46,8 @@ $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
 $serverval = $_SESSION['serverval'];
+$email = $_SESSION['email'];
+
 
 $user = 'user';
 $user1 = 'admin';

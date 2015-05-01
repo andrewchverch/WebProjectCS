@@ -28,6 +28,7 @@ $serveruser = $row["Username"];
 $serverpass = $row["Password"];
 $serverid = $row["UserID"];
 $serverval = $row["Validated"];
+$email = $row["email"];
 
 
 if($serveruser&&$serverpass){
@@ -47,6 +48,11 @@ $_SESSION['serveruser'] = $serveruser;
 $_SESSION['serverpass'] = $serverpass;
 $_SESSION['serverid'] = $serverid;
 $_SESSION['serverval'] = $serverval;
+if($serverval==1)
+{
+	$_SESSION['email'] = $email;
+}
+
 	header('Location: index.php');
 }else{
 	header('Loaction: fail.php');

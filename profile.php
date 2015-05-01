@@ -5,6 +5,9 @@ $serveruser = $_SESSION['serveruser'];
 $serverpass = $_SESSION['serverpass'];
 
 $serverid = $_SESSION['serverid'];
+$serverval = $_SESSION['serverval'];
+$email = $_SESSION['email'];
+
 print( '<a href="index.php">Top 5 Questions</a>' );
 echo "<br/>";
 
@@ -47,7 +50,8 @@ echo '<img src="data:image/jpeg;base64,' . base64_encode( $result23 ) . '" />';
 echo "<br/>";
 print( '<a href="uimage.php">insert avatar</a>' );
 }
-
+echo "<br/>";
+  print( '<a href="gravatar.php">insert gravatar avatar</a>' );
 
 echo "<br/>";
 echo "<br/>";

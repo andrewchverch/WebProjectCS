@@ -44,7 +44,7 @@ $result2 = mysql_query($sql2);
 
 
 
-print( '<a href="login.php">User Created, clear for Login</a>' );
+print( '<a href="login.php">User Created, clear for Login, an email has been sent for validation of the account</a>' );
 
 
 }
