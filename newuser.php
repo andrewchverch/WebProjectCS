@@ -35,9 +35,10 @@ $highest = $row2["HighestUserID"];
 
 $highest++;
 
-
 $sql2 = "INSERT INTO users (UserID,Username,Password,UsScore,Validated,email)
-VALUES ('$highest','$inputuser', '$inputpass','0','$iemail')";
+VALUES ('$highest','$inputuser', '$inputpass','0','0','$iemail')";
+
+
 
 
 $result2 = mysql_query($sql2);

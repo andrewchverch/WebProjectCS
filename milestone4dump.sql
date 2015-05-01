@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2015 at 09:40 PM
+-- Generation Time: May 01, 2015 at 10:03 PM
 -- Server version: 5.6.21
 -- PHP Version: 5.6.3
 
@@ -160,12 +160,11 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`UserID`, `Username`, `Password`, `UsScore`, `Validated`, `email`) VALUES
 (1, 'pallen', 'm$ftw', 4, 1, 'achve001@odu.edu'),
 (2, 'tblee', '0mGth3WeB!', 6, 0, ''),
-(3, 'bourne', 'bash_$', 2, 0, ''),
+(3, 'bourne', 'bash_$', 2, 1, ''),
 (4, 'edsger', 'st1ll1l11lG0O2', 0, 0, ''),
 (5, 'wgates', '5il3M4X_m$4L', 1, 0, ''),
 (6, 'ace', 'lance', 0, 0, ''),
-(7, 'ADMINISTRATOR', 'ADMINISTRATOR', 0, 0, ''),
-(8, 'test1', 'test1', 0, 0, '');
+(7, 'ADMINISTRATOR', 'ADMINISTRATOR', 0, 0, '');
 
 -- --------------------------------------------------------
 
